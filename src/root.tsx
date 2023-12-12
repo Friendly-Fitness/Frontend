@@ -1,12 +1,9 @@
-import { component$ } from "@builder.io/qwik";
-import {
-  QwikCityProvider,
-  RouterOutlet,
-  ServiceWorkerRegister,
-} from "@builder.io/qwik-city";
-import { RouterHead } from "./components/router-head/router-head";
+import { component$, createContextId, useContextProvider, useStore } from '@builder.io/qwik';
+import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
+import { RouterHead } from './components/router-head/router-head';
 
-import "./global.css";
+import './global.css';
+export const CTX_INDEX_ROUTES = createContextId<any>('index_routes____');
 
 export default component$(() => {
   /**
@@ -15,6 +12,14 @@ export default component$(() => {
    *
    * Don't remove the `<head>` and `<body>` elements.
    */
+  //#region DEFINICION_CTX_INDEX_ROUTES
+  const definicion_CTX_INDEX_ROUTES = useStore({
+    estaLogeado: false,
+    idUsuario: '',
+    nombre: '',
+  });
+  useContextProvider(CTX_INDEX_ROUTES, definicion_CTX_INDEX_ROUTES);
+  //#endregion DEFINICION_CTX_INDEX_ROUTES
 
   return (
     <QwikCityProvider>
