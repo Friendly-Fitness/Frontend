@@ -1,18 +1,48 @@
-import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { $, component$, createContextId, useContextProvider, useStore, useStyles$ } from '@builder.io/qwik';
+import { useNavigate, type DocumentHead } from '@builder.io/qwik-city';
+import { images } from '~/assets';
 
-import Counter from "~/components/starter/counter/counter";
-import Hero from "~/components/starter/hero/hero";
-import Infobox from "~/components/starter/infobox/infobox";
-import Starter from "~/components/starter/next-steps/next-steps";
+import Counter from '~/components/starter/counter/counter';
+import Footer from '~/components/starter/footer/footer';
+import Header from '~/components/starter/header/header';
+import Hero from '~/components/starter/hero/hero';
+import Infobox from '~/components/starter/infobox/infobox';
+import Starter from '~/components/starter/next-steps/next-steps';
+
+import styles from './index.css?inline';
 
 export default component$(() => {
+  useStyles$(styles);
+  //#region INICIALIZAR
+  const navegarA = useNavigate();
+  //#endregion INICIALIZAR
+
+  const registrar = $(() => {
+    alert('registrando...');
+  });
   return (
     <>
-      <Hero />
-      <Starter />
-
-      <div role="presentation" class="ellipsis"></div>
+      <Header />
+      {/* <Hero />
+      <Starter /> */}
+      <div class="image-container">
+        <img src={images.pagina} alt="Imagen de fondo" height="900" width="1600" />
+        <div class="overlay"></div>
+        <div class="content">
+          <h2>Friendly Fitness</h2>
+          <p>Vive la experiencia de entrenar en nuestra plataforma en cualquier momento.</p>
+          <button
+            class="but"
+            onClick$={() => {
+              navegarA('/registrarse');
+            }}
+          >
+            Registrarse
+          </button>
+        </div>
+      </div>
+      <Footer />
+      {/* <div role="presentation" class="ellipsis"></div>
       <div role="presentation" class="ellipsis ellipsis-purple"></div>
 
       <div class="container container-center container-spacing-xl">
@@ -21,10 +51,10 @@ export default component$(() => {
           <br /> on me
         </h3>
         <Counter />
-      </div>
+      </div> */}
 
-      <div class="container container-flex">
-        <Infobox>
+      {/* <div class="container container-flex"> */}
+      {/* <Infobox>
           <div q:slot="title" class="icon icon-cli">
             CLI Commands
           </div>
@@ -50,16 +80,15 @@ export default component$(() => {
               Runs the qwik CLI to add integrations
             </p>
           </>
-        </Infobox>
+        </Infobox> */}
 
-        <div>
+      {/* <div>
           <Infobox>
             <div q:slot="title" class="icon icon-apps">
               Example Apps
             </div>
             <p>
-              Have a look at the <a href="/demo/flower">Flower App</a> or the{" "}
-              <a href="/demo/todolist">Todo App</a>.
+              Have a look at the <a href="/demo/flower">Flower App</a> or the <a href="/demo/todolist">Todo App</a>.
             </p>
           </Infobox>
 
@@ -95,18 +124,18 @@ export default component$(() => {
               </li>
             </ul>
           </Infobox>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </>
   );
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: 'Welcome to Gym',
   meta: [
     {
-      name: "description",
-      content: "Qwik site description",
+      name: 'description',
+      content: 'Gym site description',
     },
   ],
 };
